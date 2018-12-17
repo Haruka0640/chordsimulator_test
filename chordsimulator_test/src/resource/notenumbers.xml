@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notes title="note numbers">
+	<note id="C">
+	  <name>C</name>
+	  <number>0</number>
+	</note>
+	<note id="D">
+      <name>D</name>
+	  <number>2</number>
+	</note>
+	<note id="E">
+      <name>E</name>
+	  <number>4</number>
+	</note>
+	<note id="F">
+	  <name>F</name>
+	  <number>5</number>
+	</note>
+	<note id="G">
+	  <name>G</name>
+	  <number>7</number>
+	</note>
+	<note id="A">
+	  <name>A</name>
+	  <number>9</number>
+	</note>
+	<note id="B">
+	  <name>B</name>
+	  <number>11</number>
+	</note>
+</notes>
