@@ -1,5 +1,3 @@
-package def;
-import java.io.*;
 import javax.sound.midi.*;
 
 import org.w3c.dom.Document;
@@ -41,7 +39,7 @@ class MidiTest {
     	intRoot = changeNoteToNum(strRoot,octave);
     	chordArray.add(intRoot); 
     	
-        Document document = XMLDomReader.buildDocument("src/src/resource/chordnumbers.xml");
+        Document document = XMLDomReader.buildDocument("src/resource/chordnumbers.xml");
     	       
         Element chordElement = document.getElementById(strChordName);
         NodeList semitonesNodeList = chordElement.getElementsByTagName("semitone");        
@@ -64,7 +62,7 @@ class MidiTest {
  
     	int intNote = 0;
     	
-    	Document document = XMLDomReader.buildDocument("src/src/resource/notenumbers.xml");
+    	Document document = XMLDomReader.buildDocument("src/resource/notenumbers.xml");
 
         Element noteElement = document.getElementById(strNote);
         intNote = Integer.parseInt(noteElement.getElementsByTagName("number").item(0).getTextContent());
