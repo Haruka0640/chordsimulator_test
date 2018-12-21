@@ -1,8 +1,10 @@
+package def;
 import java.io.*;
 import javax.sound.midi.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -45,32 +47,48 @@ class MidiTest {
     	
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        Document document = documentBuilder.parse("src/resource/chordnumbers.xml");
+        Document document = documentBuilder.parse("src/src/resource/chordnumbers.xml");
         
-    	Element root = document.getDocumentElement();
-    	NodeList chordsNodeList = root.getChildNodes();
+        Element chordElement = document.getElementById("M");
+        NodeList semitonesNodeList = chordElement.getElementsByTagName("semitone");
         
-    	for (int i = 0; i < chordsNodeList.getLength(); i++) {
-    		Node chordNode = chordsNodeList.item(i);
-    		if(chordNode.getNodeType() == Node.ELEMENT_NODE) {
-    			Element chordElement = (Element)chordNode;
-	   			if(chordElement.getElementsByTagName("shortname").item(0).getTextContent().equals(strChordName)) {
-	   				NodeList semitonesNodeList = chordElement.getElementsByTagName("semitone");
-	   		    	for (int j = 0; j < semitonesNodeList.getLength(); j++) {
-	   		    		Node semitoneNode = semitonesNodeList.item(j);
-	   		    		if(semitoneNode.getNodeType() == Node.ELEMENT_NODE) {
-	   		    			Element semitoneElement = (Element)semitoneNode;
-	   		    			intSemitone = Integer.parseInt(semitoneElement.getTextContent());
-	   		    			intSemitone = intRoot + intSemitone;
-	   		    			chordArray.add(intSemitone);
-	   		    		}
-	   		    	}
-	   				break;
-	    		}
-    		}
+    	for (int j = 0; j < semitonesNodeList.getLength(); j++) {
+    		Node semitoneNode = semitonesNodeList.item(j);
+    		if(semitoneNode.getNodeType() == Node.ELEMENT_NODE) {
+    			Element semitoneElement = (Element)semitoneNode;
+    			intSemitone = Integer.parseInt(semitoneElement.getTextContent());
+    			intSemitone = intRoot + intSemitone;
+    			chordArray.add(intSemitone);
+	    	}
     	}
     	
     	return chordArray;
+
+        
+//    	Element root = document.getDocumentElement();
+//    	NodeList chordsNodeList = root.getChildNodes();
+        
+//    	for (int i = 0; i < chordsNodeList.getLength(); i++) {
+//    		Node chordNode = chordsNodeList.item(i);
+//    		if(chordNode.getNodeType() == Node.ELEMENT_NODE) {
+//    			Element chordElement = (Element)chordNode;
+//	   			if(chordElement.getElementsByTagName("shortname").item(0).getTextContent().equals(strChordName)) {
+//	   				NodeList semitonesNodeList = chordElement.getElementsByTagName("semitone");
+//	   		    	for (int j = 0; j < semitonesNodeList.getLength(); j++) {
+//	   		    		Node semitoneNode = semitonesNodeList.item(j);
+//	   		    		if(semitoneNode.getNodeType() == Node.ELEMENT_NODE) {
+//	   		    			Element semitoneElement = (Element)semitoneNode;
+//	   		    			intSemitone = Integer.parseInt(semitoneElement.getTextContent());
+//	   		    			intSemitone = intRoot + intSemitone;
+//	   		    			chordArray.add(intSemitone);
+//	   		    		}
+//	   		    	}
+//	   				break;
+//	    		}
+//    		}
+//    	}
+    	
+
     }
     
     private static int changeNoteToNum(String strNote,int octave) throws Exception {
@@ -79,7 +97,14 @@ class MidiTest {
     	
     	DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        Document document = documentBuilder.parse("src/resource/notenumbers.xml");
+        Document document = documentBuilder.parse("src/src/resource/notenumbers.xml");
+        
+//        Element element = document.getElementById("M");
+//        
+//        
+//        intNote = Integer.parseInt(element.getElementsByTagName("number").item(0).getTextContent());
+//        
+//        System.out.print(intNote);
         
     	Element root = document.getDocumentElement();
     	NodeList notesNodeList = root.getChildNodes();

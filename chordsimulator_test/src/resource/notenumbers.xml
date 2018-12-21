@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE notes [
+	<!ELEMENT notes (note+)>
+	<!ELEMENT note (name,number)>
+	<!ELEMENT note (#PCDATA)>
+	<!ELEMENT number (#PCDATA)>
+	<!ATTLIST notes title CDATA #IMPLIED>
+	<!ATTLIST note id ID #REQUIRED>
+]>
+
 <notes title="note numbers">
 	<note id="C">
 	  <name>C</name>
